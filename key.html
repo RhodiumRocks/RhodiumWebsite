@@ -63,13 +63,13 @@
     /* CARDS GRID */
     .options-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-      width: 100%; max-width: 580px; margin-bottom: 16px;
+      width: 100%; max-width: 580px; margin-bottom: 16px; align-items: stretch;
     }
     @media (max-width: 520px) { .options-grid { grid-template-columns: 1fr; } }
 
     .option-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-      padding: 24px; display: flex; flex-direction: column; gap: 20px;
+      padding: 24px; display: flex; flex-direction: column; gap: 20px; justify-content: space-between;
       text-decoration: none; transition: border-color 0.2s, background 0.2s;
     }
     .option-card:hover { border-color: var(--border-h); background: #1a1a22; }
@@ -144,7 +144,7 @@
         <div class="option-top">
           <span class="option-label">Option 1</span>
           <span class="option-title">Checkpoint</span>
-          <span class="option-desc">Complete a quick checkpoint to receive your key</span>
+          <span class="option-desc">Complete a quick checkpoint to get your key</span>
         </div>
         <div class="option-provider">
           <div class="option-provider-logo"><img src="https://files.catbox.moe/wauimt.png" alt="Linkvertise"></div>
