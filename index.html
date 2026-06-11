@@ -104,7 +104,12 @@
     .exec-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.18); }
     .exec-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center; }
     .exec-item { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; font-weight: 700; color: var(--text); }
-    .exec-logo { width: 26px; height: 26px; border-radius: 7px; background: var(--card); border: 1px solid var(--border); display: grid; place-items: center; font-size: 0.6rem; font-weight: 800; color: rgba(255,255,255,0.3); }
+    .exec-logo {
+      width: 26px; height: 26px; border-radius: 7px;
+      background: var(--card); border: 1px solid var(--border);
+      display: grid; place-items: center; overflow: hidden;
+    }
+    .exec-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
     .exec-more { font-size: 0.8rem; color: rgba(255,255,255,0.2); }
 
     /* SECTIONS */
@@ -127,14 +132,15 @@
     }
     .game-card:hover { border-color: var(--border-h); transform: translateY(-2px); }
     .game-card:hover .game-img { transform: scale(1.04); filter: brightness(0.95); }
-    .game-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #0d0d12; }
+
+    /* Smaller thumbnail: fixed height instead of 16/9 aspect ratio */
+    .game-img-wrap { width: 100%; height: 120px; overflow: hidden; background: #0d0d12; }
     .game-img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.82); transition: transform 0.4s ease, filter 0.4s ease; }
-    .game-img-placeholder { width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0f0f18, #141420); }
-    .game-img-placeholder span { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.1); }
-    .game-body { padding: 14px 16px 16px; }
-    .game-name-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .game-name { font-size: 0.9rem; font-weight: 700; color: var(--head); }
-    .game-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(90,154,90,0.5); display: grid; place-items: center; font-size: 0.55rem; color: #5a9a5a; }
+
+    .game-body { padding: 12px 14px 14px; }
+    .game-name-row { display: flex; align-items: center; justify-content: space-between; }
+    .game-name { font-size: 0.85rem; font-weight: 700; color: var(--head); }
+    .game-check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(90,154,90,0.5); display: grid; place-items: center; font-size: 0.55rem; color: #5a9a5a; flex-shrink: 0; }
 
     /* single get key */
     .games-cta { display: flex; justify-content: center; margin-top: 20px; }
@@ -149,7 +155,6 @@
 
     /* PRICING */
     .pricing-bg { background: var(--surface); }
-    .pricing-note { text-align: center; font-size: 0.82rem; color: var(--text); max-width: 500px; margin: -16px auto 36px; }
     .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 640px; margin: 0 auto; }
     @media (max-width: 520px) { .plans-grid { grid-template-columns: 1fr; } }
 
@@ -249,9 +254,18 @@
     <div class="exec-section">
       <div class="exec-label">Supported Executors</div>
       <div class="exec-row">
-        <div class="exec-item"><div class="exec-logo">K</div> Potassium</div>
-        <div class="exec-item"><div class="exec-logo">D</div> Delta</div>
-        <div class="exec-item"><div class="exec-logo">V</div> Volt</div>
+        <div class="exec-item">
+          <div class="exec-logo"><img src="https://files.catbox.moe/vnip8i.png" alt="Potassium"></div>
+          Potassium
+        </div>
+        <div class="exec-item">
+          <div class="exec-logo"><img src="https://files.catbox.moe/bdu0w5.ico" alt="Delta"></div>
+          Delta
+        </div>
+        <div class="exec-item">
+          <div class="exec-logo"><img src="https://files.catbox.moe/uxiu3v.svg" alt="Volt"></div>
+          Volt
+        </div>
         <span class="exec-more">And many more...</span>
       </div>
     </div>
@@ -263,12 +277,12 @@
   <section id="games">
     <div class="container">
       <p class="sec-eyebrow">Supported Games</p>
-      <h2 class="sec-title">rhodium supports <em style="font-style:normal;color:var(--accent);">RIVALS</em></h2>
+      <h2 class="sec-title">Scripts for the games <em style="font-style:normal;color:var(--accent);">you play</em></h2>
       <p class="sec-sub">High quality features for the games you actually play.</p>
 
       <div class="games-grid">
         <div class="game-card">
-          <div class="game-img-wrap"><img src="https://files.catbox.moe/c7v5m5.png" alt="RIVALS" loading="lazy"></div>
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/c7v5m5.png" alt="RIVALS" loading="lazy"></div>
           <div class="game-body">
             <div class="game-name-row">
               <span class="game-name">RIVALS</span>
@@ -277,7 +291,7 @@
           </div>
         </div>
         <div class="game-card">
-          <div class="game-img-wrap"><img src="https://files.catbox.moe/6rmfmi.png" alt="Tower of Hell" loading="lazy"></div>
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/6rmfmi.png" alt="Tower of Hell" loading="lazy"></div>
           <div class="game-body">
             <div class="game-name-row">
               <span class="game-name">Tower of Hell</span>
@@ -286,10 +300,37 @@
           </div>
         </div>
         <div class="game-card">
-          <div class="game-img-wrap"><img src="https://files.catbox.moe/1yrb9s.png" alt="Build a Boat for Treasure" loading="lazy"></div>
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/1yrb9s.png" alt="Build a Boat for Treasure" loading="lazy"></div>
           <div class="game-body">
             <div class="game-name-row">
               <span class="game-name">Build a Boat for Treasure</span>
+              <span class="game-check">✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/w7xdn6.png" alt="SlimeRNG" loading="lazy"></div>
+          <div class="game-body">
+            <div class="game-name-row">
+              <span class="game-name">SlimeRNG</span>
+              <span class="game-check">✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/yf49xd.png" alt="99 Nights in the Forest" loading="lazy"></div>
+          <div class="game-body">
+            <div class="game-name-row">
+              <span class="game-name">99 Nights in the Forest</span>
+              <span class="game-check">✓</span>
+            </div>
+          </div>
+        </div>
+        <div class="game-card">
+          <div class="game-img-wrap"><img class="game-img" src="https://files.catbox.moe/p8god4.png" alt="Murder Mystery 2" loading="lazy"></div>
+          <div class="game-body">
+            <div class="game-name-row">
+              <span class="game-name">Murder Mystery 2</span>
               <span class="game-check">✓</span>
             </div>
           </div>
@@ -396,7 +437,7 @@
     requestAnimationFrame(draw);
   }
   resize(); mkStars(300); draw();
-  window.addEventListener('resize',()=>{ resize(); mkStars(300); });
+  window.addEventListener('resize',()=>{ resize(); mkStars(300); },{passive:true});
   window.addEventListener('scroll',()=>{ canvas.style.transform=`translateY(${window.scrollY*0.04}px)`; },{passive:true});
 
   function copyLS() {
@@ -408,6 +449,5 @@
     a.addEventListener('click',e=>{ const t=document.querySelector(a.getAttribute('href')); if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});} });
   });
 </script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"581e3744a6aa4830a53e7ad4d4a2660e","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
