@@ -23,10 +23,8 @@
     }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; min-height: 100vh; }
-
     #starfield { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -52,100 +50,51 @@
 
     .wrap { position: relative; z-index: 1; }
 
-    /* PAGE */
     .page {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       padding: 90px 24px 60px;
     }
 
-    .eyebrow {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.2); text-align: center; margin-bottom: 10px;
-    }
-    .page-title {
-      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.04em;
-      color: var(--bright); text-align: center; margin-bottom: 8px; line-height: 1.1;
-    }
-    .page-sub {
-      font-size: 0.88rem; color: var(--text); text-align: center; max-width: 400px; margin: 0 auto 40px;
-    }
+    .eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); text-align: center; margin-bottom: 10px; }
+    .page-title { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.04em; color: var(--bright); text-align: center; margin-bottom: 8px; line-height: 1.1; }
+    .page-sub { font-size: 0.88rem; color: var(--text); text-align: center; max-width: 400px; margin: 0 auto 40px; }
 
-    /* STEPS */
-    .steps-card {
-      width: 100%; max-width: 520px;
+    /* CARDS GRID */
+    .options-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+      width: 100%; max-width: 580px; margin-bottom: 16px;
+    }
+    @media (max-width: 520px) { .options-grid { grid-template-columns: 1fr; } }
+
+    .option-card {
       background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-      overflow: hidden; margin-bottom: 16px;
+      padding: 24px; display: flex; flex-direction: column; gap: 20px;
+      text-decoration: none; transition: border-color 0.2s, background 0.2s;
     }
+    .option-card:hover { border-color: var(--border-h); background: #1a1a22; }
 
-    .steps-header {
-      padding: 18px 22px; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .steps-header-title { font-size: 0.82rem; font-weight: 700; color: var(--head); }
-    .steps-header-badge {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      background: rgba(90,154,90,0.1); border: 1px solid rgba(90,154,90,0.2);
-      border-radius: 5px; padding: 3px 8px; color: #6aaa6a;
-    }
+    .option-top { display: flex; flex-direction: column; gap: 6px; }
+    .option-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+    .option-title { font-size: 1rem; font-weight: 800; color: var(--head); letter-spacing: -0.02em; }
+    .option-desc { font-size: 0.78rem; color: var(--text); }
 
-    .step {
-      display: flex; align-items: center; gap: 16px;
-      padding: 18px 22px; border-bottom: 1px solid var(--border);
-      text-decoration: none; transition: background 0.2s;
-      cursor: pointer;
+    .option-provider {
+      display: flex; align-items: center; gap: 7px;
     }
-    .step:last-child { border-bottom: none; }
-    .step:hover { background: rgba(255,255,255,0.02); }
-    .step.done { pointer-events: none; opacity: 0.5; }
-    .step.active { background: rgba(255,255,255,0.02); }
-
-    .step-num {
-      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    .option-provider-logo {
+      width: 22px; height: 22px; border-radius: 6px;
       background: var(--surface); border: 1px solid var(--border);
-      display: grid; place-items: center;
-      font-size: 0.75rem; font-weight: 800; color: var(--text);
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;
     }
-    .step.done .step-num { background: rgba(90,154,90,0.15); border-color: rgba(90,154,90,0.3); color: var(--green); }
-    .step.active .step-num { border-color: var(--border-h); color: var(--head); }
+    .option-provider-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .option-provider-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    .option-arrow { font-size: 0.8rem; color: var(--text); margin-left: auto; transition: color 0.2s, transform 0.2s; }
+    .option-card:hover .option-arrow { color: var(--head); transform: translateX(3px); }
 
-    .step-info { flex: 1; min-width: 0; }
-    .step-label { font-size: 0.88rem; font-weight: 700; color: var(--head); margin-bottom: 2px; }
-    .step-desc { font-size: 0.75rem; color: var(--text); }
-
-    .step-arrow { font-size: 0.75rem; color: var(--text); transition: color 0.2s, transform 0.2s; flex-shrink: 0; }
-    .step:hover .step-arrow { color: var(--head); transform: translateX(3px); }
-    .step.done .step-arrow { color: var(--green); }
-
-    /* KEY INPUT */
-    .key-card {
-      width: 100%; max-width: 520px;
-      background: var(--card); border: 1px solid var(--border); border-radius: 16px;
-      padding: 22px; margin-bottom: 16px;
-    }
-    .key-card-title { font-size: 0.82rem; font-weight: 700; color: var(--head); margin-bottom: 14px; }
-
-    .key-input-row { display: flex; gap: 8px; }
-    .key-input {
-      flex: 1; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 9px; padding: 10px 14px;
-      font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78rem; color: var(--accent);
-      outline: none; transition: border-color 0.2s;
-    }
-    .key-input::placeholder { color: rgba(255,255,255,0.15); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.8rem; }
-    .key-input:focus { border-color: var(--border-h); }
-    .key-submit {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 9px; padding: 10px 18px;
-      color: var(--head); font-size: 0.82rem; font-weight: 700;
-      cursor: pointer; transition: border-color 0.2s, background 0.2s; white-space: nowrap;
-    }
-    .key-submit:hover { border-color: var(--border-h); background: #1e1e26; }
-
-    /* UPGRADE CTA */
+    /* UPGRADE */
     .upgrade-card {
-      width: 100%; max-width: 520px;
+      width: 100%; max-width: 580px;
       background: var(--card); border: 1px solid var(--border); border-radius: 16px;
       padding: 20px 22px;
       display: flex; align-items: center; justify-content: space-between; gap: 16px;
@@ -160,7 +109,6 @@
     .upgrade-arrow { font-size: 0.8rem; color: var(--text); transition: color 0.2s, transform 0.2s; }
     .upgrade-card:hover .upgrade-arrow { color: var(--head); transform: translateX(3px); }
 
-    /* FOOTER */
     footer {
       position: relative; z-index: 1; padding: 24px 32px;
       border-top: 1px solid var(--border);
@@ -168,21 +116,10 @@
     }
     footer p { font-size: 0.75rem; color: rgba(255,255,255,0.18); }
 
-    #toast {
-      position: fixed; bottom: 20px; left: 50%;
-      transform: translateX(-50%) translateY(60px); opacity: 0;
-      background: var(--card); border: 1px solid var(--border-h);
-      border-radius: 8px; padding: 9px 18px;
-      font-size: 0.8rem; font-weight: 600; color: var(--head);
-      pointer-events: none; transition: transform 0.25s, opacity 0.25s; z-index: 999;
-    }
-    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-
     @media (max-width: 600px) {
       nav { padding: 0 16px; }
       .nav-links a:not(.nav-btn) { display: none; }
       footer { padding: 20px 16px; }
-      .key-input-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -194,7 +131,6 @@
     <a href="index.html" class="logo">rhodium<span>.rocks</span></a>
     <div class="nav-links">
       <a href="index.html#games">Games</a>
-      <a href="index.html#pricing">Pricing</a>
       <a href="index.html#contact">Contact</a>
       <a href="key.html" class="nav-btn">Get key</a>
     </div>
@@ -202,46 +138,40 @@
 
   <div class="page">
     <p class="eyebrow">Free Access</p>
-    <h1 class="page-title">Get your key</h1>
-    <p class="page-sub">Complete the steps below to earn free access to rhodium.rocks.</p>
+    <h1 class="page-title">Key System</h1>
+    <p class="page-sub">Choose how you want to get your free key.</p>
 
-    <div class="steps-card">
-      <div class="steps-header">
-        <span class="steps-header-title">Complete all steps</span>
-        <span class="steps-header-badge">Free</span>
-      </div>
-
-      <a href="https://discord.gg/X6Chaak56" target="_blank" class="step" id="step1">
-        <div class="step-num">1</div>
-        <div class="step-info">
-          <div class="step-label">Join our Discord</div>
-          <div class="step-desc">Join the community server to continue</div>
+    <div class="options-grid">
+      <a href="https://ads.luarmor.net/get_key?for=Rhodium_Checkpoint_2-KACbycOotdef" target="_blank" class="option-card">
+        <div class="option-top">
+          <span class="option-label">Option 1</span>
+          <span class="option-title">Checkpoint</span>
+          <span class="option-desc">Complete a quick checkpoint to receive your key</span>
         </div>
-        <span class="step-arrow">→</span>
+        <div class="option-provider">
+          <div class="option-provider-logo"><img src="https://luarmor.net/assets/img/lv.png" alt="Linkvertise"></div>
+          <span class="option-provider-name">Linkvertise</span>
+          <span class="option-arrow">→</span>
+        </div>
       </a>
 
-      <a href="https://ads.luarmor.net/get_key?for=Rhodium_Checkpoint_2-KACbycOotdef" target="_blank" class="step" id="step2">
-        <div class="step-num">2</div>
-        <div class="step-info">
-          <div class="step-label">Complete checkpoint</div>
-          <div class="step-desc"><img src="https://luarmor.net/assets/img/lv.png" style="height:12px;vertical-align:middle;margin-right:5px;opacity:0.6;">Linkvertise</div>
+      <a href="https://ads.luarmor.net/get_key?for=Rhodium_Script_Key-xYhSvayPRLvH" target="_blank" class="option-card">
+        <div class="option-top">
+          <span class="option-label">Option 2</span>
+          <span class="option-title">Get Key</span>
+          <span class="option-desc">Get your key directly via Work.Ink</span>
         </div>
-        <span class="step-arrow">→</span>
-      </a>
-
-      <a href="https://ads.luarmor.net/get_key?for=Rhodium_Script_Key-xYhSvayPRLvH" target="_blank" class="step" id="step3">
-        <div class="step-num">3</div>
-        <div class="step-info">
-          <div class="step-label">Get your key</div>
-          <div class="step-desc"><img src="https://luarmor.net/assets/img/workink.png" style="height:12px;vertical-align:middle;margin-right:5px;opacity:0.6;">Work.Ink</div>
+        <div class="option-provider">
+          <div class="option-provider-logo"><img src="https://luarmor.net/assets/img/workink.png" alt="Work.Ink"></div>
+          <span class="option-provider-name">Work.Ink</span>
+          <span class="option-arrow">→</span>
         </div>
-        <span class="step-arrow">→</span>
       </a>
     </div>
 
     <a href="https://rhodium.mysellauth.com/product/lifetime-key" target="_blank" class="upgrade-card">
       <div class="upgrade-left">
-        <span class="upgrade-label">Skip the steps</span>
+        <span class="upgrade-label">Skip the key system</span>
         <span class="upgrade-title">Upgrade to Lifetime</span>
         <span class="upgrade-sub">Permanent access, no key resets</span>
       </div>
@@ -256,10 +186,7 @@
   </footer>
 </div>
 
-<div id="toast"></div>
-
 <script>
-  // Starfield
   const canvas = document.getElementById('starfield');
   const ctx = canvas.getContext('2d');
   let W, H, stars = [];
@@ -281,8 +208,6 @@
   resize(); mkStars(300); draw();
   window.addEventListener('resize',()=>{ resize(); mkStars(300); },{passive:true});
   window.addEventListener('scroll',()=>{ canvas.style.transform=`translateY(${window.scrollY*0.04}px)`; },{passive:true});
-
-
 </script>
 </body>
 </html>
