@@ -211,7 +211,7 @@
         <span class="steps-header-badge">Free</span>
       </div>
 
-      <a href="https://discord.gg/AHVaDQuHR" target="_blank" class="step" id="step1">
+      <a href="https://discord.gg/X6Chaak56" target="_blank" class="step" id="step1">
         <div class="step-num">1</div>
         <div class="step-info">
           <div class="step-label">Join our Discord</div>
@@ -220,7 +220,7 @@
         <span class="step-arrow">→</span>
       </a>
 
-      <a href="#" target="_blank" class="step" id="step2" onclick="handleStep2(event)">
+      <a href="#" target="_blank" class="step" id="step2">
         <div class="step-num">2</div>
         <div class="step-info">
           <div class="step-label">Complete checkpoint</div>
@@ -229,7 +229,7 @@
         <span class="step-arrow">→</span>
       </a>
 
-      <a href="#" target="_blank" class="step" id="step3" onclick="handleStep3(event)">
+      <a href="#" target="_blank" class="step" id="step3">
         <div class="step-num">3</div>
         <div class="step-info">
           <div class="step-label">Get your key</div>
@@ -256,7 +256,7 @@
   </footer>
 </div>
 
-<div id="toast" id="toast"></div>
+<div id="toast"></div>
 
 <script>
   // Starfield
@@ -282,42 +282,7 @@
   window.addEventListener('resize',()=>{ resize(); mkStars(300); },{passive:true});
   window.addEventListener('scroll',()=>{ canvas.style.transform=`translateY(${window.scrollY*0.04}px)`; },{passive:true});
 
-  function showToast(msg, duration = 2200) {
-    const el = document.getElementById('toast');
-    el.textContent = msg;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), duration);
-  }
 
-  function markDone(stepId) {
-    const el = document.getElementById(stepId);
-    if (el) {
-      el.classList.add('done');
-      el.querySelector('.step-arrow').textContent = '✓';
-    }
-  }
-
-  // Step 1: mark done after visiting discord
-  document.getElementById('step1').addEventListener('click', () => {
-    setTimeout(() => markDone('step1'), 1500);
-  });
-
-  function handleStep2(e) {
-    e.preventDefault();
-    showToast('Set your checkpoint URL in key.html');
-  }
-
-  function handleStep3(e) {
-    e.preventDefault();
-    showToast('Set your key retrieval URL in key.html');
-  }
-
-  function submitKey() {
-    const val = document.getElementById('keyInput').value.trim();
-    if (!val) { showToast('Paste your key first.'); return; }
-    // Replace this with real validation logic
-    showToast('Key accepted! Load the script in-game.');
-  }
 </script>
 </body>
 </html>
